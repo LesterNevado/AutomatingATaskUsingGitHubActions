@@ -1,2 +1,4 @@
 #!/bin/bash
-echo "Current Date and Time: $(date)" >> log.txt
+echo "[$(date)] - Logged by GitHub user: LesterNevado" >> log.txt
+count=$(wc -l < log.txt)
+echo "The log file has been updated $count times."
