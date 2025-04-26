@@ -2,8 +2,8 @@ name: Log Time Job
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  # Runs every 5 minutes
-  workflow_dispatch:  # Manual trigger option
+    - cron: "*/30 * * * *"  # Runs every 30 minutes
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   log_time:
@@ -12,16 +12,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Run logging script
         run: |
           chmod +x log_time.sh
           ./log_time.sh
 
+      - name: Run count logs script
+        run: |
+          chmod +x count_logs.sh
+          ./count_logs.sh
+
       - name: Commit and push changes
         run: |
           git config --global user.name "LesterNevado"
           git config --global user.email "lester.nevado2@gmail.com"
-          git add log.txt
-          git commit -m "Update log file with new timestamp" || echo "No changes to commit"
+          git add log.txt log_count.txt
+          git commit -m "Update log files with new timestamp and count" || echo "No changes to commit"
           git push
