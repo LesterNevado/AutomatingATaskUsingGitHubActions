@@ -27,6 +27,6 @@ jobs:
         run: |
           git config --global user.name "LesterNevado"
           git config --global user.email "lester.nevado2@gmail.com"
-          git add log.txt log_count.txt
+          git add log.txt
           git commit -m "Update log files with new timestamp and count" || echo "No changes to commit"
           git push
